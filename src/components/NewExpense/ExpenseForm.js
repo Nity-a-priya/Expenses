@@ -6,6 +6,7 @@ const ExpenseForm = (props) => {
   const [enteredAmount, setEnteredAmount] = useState(""); // it is string but not number because, by default, change evnt value of input element, it always stores as a string
   const [enteredDate, setEnteredDate] = useState("");
 
+
   //instead of writing 3 useState(), we can also write it using one single useState as below:
 
   /*  const [userInput, setUserInput] = useState({
@@ -13,6 +14,9 @@ const ExpenseForm = (props) => {
         enteredAmount: '',
         enteredDate: ''
     }); */
+
+
+    
 
   const titleChangeHandler = (event) => {
     // console.log(event.target.value);
@@ -44,7 +48,7 @@ const ExpenseForm = (props) => {
         }); */
   };
   const dateChangeHandler = (event) => {
-    //  console.log(event.target.value);
+     // console.log(event);
     setEnteredDate(event.target.value);
     /*   setUserInput({
             ...userInput,
@@ -60,9 +64,10 @@ const ExpenseForm = (props) => {
     event.preventDefault(); // prevents the browser from refreshing the page
 
     const expenseData = {
+      id: Math.random().toString(),
       title: enteredTitle,
-      amount: enteredAmount,
-      date: new Date(enteredDate),
+      amount: +enteredAmount,
+      date: new Date(enteredDate)
     };
     //console.log(expenseData);
     props.onSaveExpenseData(expenseData);
@@ -71,10 +76,14 @@ const ExpenseForm = (props) => {
     setEnteredDate('');
   };
 
+  
+      
+
+
   return (
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
-        <div className="new-expense__control">
+      <div className="new-expense__control">
           <label>Title</label>
           <input
             type="text"
@@ -102,9 +111,9 @@ const ExpenseForm = (props) => {
             onChange={dateChangeHandler}
           />
         </div>
-
         <div className="new-expense__actions">
-          <button type="submit">Add Expense</button>
+          <button onClick = {props.click}>Cancel</button>
+          <button type='submit'>Add Expense</button>
         </div>
       </div>
     </form>

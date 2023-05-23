@@ -9,21 +9,25 @@ import NewExpense from './components/NewExpense/NewExpense';
 
 const dummy_expenses = [
   {
+    id: "I1",
     title: "House Rent",
     date: new Date(2021,2,28),
     amount: 26800.00,
   },
   {
+    id: "I2",
     title: "Car Insurance",
     date: new Date(2021,3,14),
     amount: 2000.00,
   },
   {
+    id: "I3",
     title: "Electricity",
     date: new Date(2021,3,15),
     amount: 1565.00,
   },
   {
+    id: "I4",
     title: "DTH",
     date: new Date(2021,2,25),
     amount: 268.00,
@@ -39,6 +43,8 @@ const dummy_expenses = [
     additionalExpense.push(expense);
     setExpense(additionalExpense);
     console.log(additionalExpense);*/
+
+    //setExpense([expense, ...previousExpenses]);
 
     setExpense(previousExpenses => {
       return [expense, ...previousExpenses];

@@ -5,7 +5,7 @@
     margin-bottom: 1rem;
     text-align: left;
   }
-  
+   
   .new-expense__control label {
     font-weight: bold;
     margin-bottom: 0.5rem;
@@ -14,7 +14,7 @@
   
   .new-expense__control input {
     font: inherit;
-    padding: 0.5rem;
+    padding: 1rem;
     border-radius: 6px;
     border: 1px solid #ccc;
     width: 20rem;
@@ -24,3 +24,4 @@
   .new-expense__actions {
     text-align: right;
   }
+  
