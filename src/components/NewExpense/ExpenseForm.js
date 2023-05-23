@@ -1,11 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./ExpenseForm.css";
 
 const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState(""); // it is string but not number because, by default, change evnt value of input element, it always stores as a string
   const [enteredDate, setEnteredDate] = useState("");
+  const [isAdd, setAdd] = useState(true);
 
+  useEffect(() => {
+    if (Object.keys(props.newExpense).length) {
+      setEnteredTitle(props.newExpense.title);
+      setEnteredAmount(props.newExpense.amount);
+      setEnteredDate(
+        `${props.newExpense.date.getFullYear()}-${String(
+          props.newExpense.date.getMonth() + 1
+        ).padStart(2, "0")}-${String(props.newExpense.date.getDate()).padStart(
+          2,
+          "0"
+        )}`
+      );
+      setAdd(false);
+    }
+  }, [props.newExpense]);
 
   //instead of writing 3 useState(), we can also write it using one single useState as below:
 
@@ -14,9 +30,6 @@ const ExpenseForm = (props) => {
         enteredAmount: '',
         enteredDate: ''
     }); */
-
-
-    
 
   const titleChangeHandler = (event) => {
     // console.log(event.target.value);
@@ -48,7 +61,7 @@ const ExpenseForm = (props) => {
         }); */
   };
   const dateChangeHandler = (event) => {
-     // console.log(event);
+    // console.log(event);
     setEnteredDate(event.target.value);
     /*   setUserInput({
             ...userInput,
@@ -67,28 +80,26 @@ const ExpenseForm = (props) => {
       id: Math.random().toString(),
       title: enteredTitle,
       amount: +enteredAmount,
-      date: new Date(enteredDate)
+      date: new Date(enteredDate),
     };
     //console.log(expenseData);
     props.onSaveExpenseData(expenseData);
-    setEnteredTitle('');
-    setEnteredAmount('');
-    setEnteredDate('');
+    setEnteredTitle("");
+    setEnteredAmount("");
+    setEnteredDate("");
+    setAdd(true);
   };
-
-  
-      
-
 
   return (
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
-      <div className="new-expense__control">
+        <div className="new-expense__control">
           <label>Title</label>
           <input
             type="text"
             value={enteredTitle}
             onChange={titleChangeHandler}
+            required
           />
         </div>
         <div className="new-expense__control">
@@ -97,23 +108,32 @@ const ExpenseForm = (props) => {
             type="number"
             min="0.01"
             step="0.01"
-            value = {enteredAmount}
+            value={enteredAmount}
             onChange={amountChangeHandler}
+            required
           />
         </div>
         <div className="new-expense__control">
           <label>Date</label>
           <input
             type="date"
-            min="2019-01-01"
-            max="2022-12-31"
-            value = {enteredDate}
+            min="1999-01-01"
+            max={`${new Date().getFullYear()}-${String(
+              new Date().getMonth() + 1
+            ).padStart(2, "0")}-${String(new Date().getDate()).padStart(
+              2,
+              "0"
+            )}`}
+            value={enteredDate}
             onChange={dateChangeHandler}
+            required
           />
         </div>
         <div className="new-expense__actions">
-          <button onClick = {props.click}>Cancel</button>
-          <button type='submit'>Add Expense</button>
+          <button onClick={props.click}>Cancel</button>
+          <button type="submit">
+            {isAdd ? "Add Expense" : "Update Expense"}
+          </button>
         </div>
       </div>
     </form>
