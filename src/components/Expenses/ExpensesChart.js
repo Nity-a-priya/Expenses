@@ -23,10 +23,14 @@ const ExpensesChart = props => {
         chartDatapoints[expenseMonth].value += expense.amount;
     }
 
+    const getMaxValue = (maxValue) => {
+        props.printMaxValue(maxValue);
+      };
+
 
     return (
 
-        <Chart dataPoints = {chartDatapoints}/>
+        <Chart dataPoints = {chartDatapoints} yearMaxValue={getMaxValue}/>
 
     );
 

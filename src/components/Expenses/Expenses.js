@@ -12,15 +12,21 @@ const Expenses = (props) => {
   const [selectedYear, setSelectedYear] = useState(
     "2023"
   );
+  const [totalExpense, setTotalExpense] = useState(0);
 
   const dateSelectionHandler = (selectedYear) => {
     setSelectedYear(selectedYear);
   };
 
+ 
   const filteredExpenses = props.items.filter(
     (filteredExpense) => filteredExpense.date.getFullYear() == selectedYear
   );
 
+  const maxValueHandler = (maxValue) => {
+    setTotalExpense(maxValue);
+  };
+  
   return (
     <div>
       <Card className="expenses">
@@ -51,7 +57,7 @@ const Expenses = (props) => {
 
         {/*  {expensesContent} */}
 
-        <ExpensesChart expenses={filteredExpenses} />
+        <ExpensesChart expenses={filteredExpenses} printMaxValue={maxValueHandler}/>
 
         <ExpensesList
           deleteExpense={props.deleteExpense}
@@ -59,6 +65,7 @@ const Expenses = (props) => {
           items={filteredExpenses}
           currentEdit={props.currentEdit}
         />
+        {filteredExpenses.length>0 && <h3>Total: {totalExpense} /-</h3>}
       </Card>
     </div>
   );

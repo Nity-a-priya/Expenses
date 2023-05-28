@@ -7,7 +7,7 @@ const Chart = (props) => {
     (sum, datapoint) => sum + datapoint.value,
     0
   );
-
+  props.yearMaxValue(totalMax);
   return (
     <div className="chart">
       {props.dataPoints.map((datapoint) => (
