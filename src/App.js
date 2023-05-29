@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react"; // done by default
+import React, { useState, useEffect } from "react"; 
 
 import "./App.css";
-//import ExpenseItem from './components/ExpenseItem';
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 import { Troubleshoot } from "@mui/icons-material";
@@ -33,7 +32,6 @@ const dummy_expenses = [
   },
 ];
 
-//function App() {
 const App = () => {
   const [expenses, setExpense] = useState([]);
   const [newExpense, setNewExpense] = useState({});
@@ -52,12 +50,6 @@ const App = () => {
   }, []);
 
   const addExpenseHandler = (expense) => {
-    /*const additionalExpense = [...newExpense];
-    additionalExpense.push(expense);
-    setExpense(additionalExpense);
-    console.log(additionalExpense);*/
-
-    //setExpense([expense, ...previousExpenses]);
 
     setExpense((previousExpenses) => {
       const previousExpensesUpdate = [...previousExpenses];
@@ -113,13 +105,6 @@ const App = () => {
       />
     </div>
   );
-
-  // The return jsx is internally written in React as:
-
-  /*  return (React.createElement('div',{}, 
-    React.createElement('h2',{},'lets get started'), 
-    React.createElement(Expenses, {items: expenses})
-    ); */
 };
 
 export default App;

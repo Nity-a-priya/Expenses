@@ -11,7 +11,6 @@ const NewExpense = ({
 }) => {
   const saveExpenseDataHandler = (enteredExpenseData) => {
     const expenseData = { ...enteredExpenseData };
-    //console.log(expenseData);
     onAddExpense(expenseData);
   };
 
