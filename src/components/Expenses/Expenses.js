@@ -9,7 +9,6 @@ import ExpensesChart from "./ExpensesChart";
 
 const Expenses = (props) => {
   const [selectedYear, setSelectedYear] = useState("2023");
-  const [totalExpense, setTotalExpense] = useState(0);
 
   const dateSelectionHandler = (selectedYear) => {
     setSelectedYear(selectedYear);

@@ -9,7 +9,6 @@ import DeleteTwoToneIcon from "@mui/icons-material/DeleteTwoTone";
 
 const ExpenseItem = (props) => {
 
-  const [title, setTitle] = useState(props.title);
   const [show, setShow] = useState(false);
 
   const handleMouseOver = (event) => {
