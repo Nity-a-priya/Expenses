@@ -53,7 +53,7 @@ const ExpenseForm = (props) => {
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
-          <label>Titles</label>
+          <label>Titles13</label>
           <input
             type="text"
             value={enteredTitle}
