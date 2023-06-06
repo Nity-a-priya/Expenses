@@ -1,9 +1,5 @@
 name: Vercel Preview Deployment
 
-env:
-  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-
 on:
   push:
     branches-ignore:
@@ -11,12 +7,22 @@ on:
 
 jobs:
   test:
-    name: Test
+    name: Run Tests
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [16.13.1]
+
     steps:
-      - name: Check out repository
+      - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "yarn"
 
       - name: Install dependencies
         run: yarn
